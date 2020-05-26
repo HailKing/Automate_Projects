@@ -2,6 +2,7 @@
 
 creating(){
 	# Put here the path to the Automating Projects folder
+	current_directory=$PWD
 	automating_folder=""
 
 	cd
@@ -15,7 +16,6 @@ creating(){
 	else
 		epository=$1
 		status=$2
-		current_directory=$PWD
 		echo "Creating folder in path_to_projects_folder"
 		mkdir $1
 		cd $1
@@ -37,8 +37,11 @@ creating(){
 		git add .
 		git commit -m "Initial commit"
 		git push --set-upstream origin master
+		
+		gnome-terminal
+		code .
 	fi
-
+	
 	cd $current_directory
 }
 
