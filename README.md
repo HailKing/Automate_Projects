@@ -1,6 +1,6 @@
 # Automate_Projects
 
-### Purpose: Automate the creation of repositories in my personal machine and in Github and practice the creation of Shell Scripts
+### Purpose: Automate the creation of repositories in my personal Linux machine and in Github and practice the creation of Shell Scripts
 
 ### Usage:
 
@@ -8,6 +8,8 @@ Type in terminal the command 'create **name of the repository** _mode of the rep
 
 ### Setting environment:
 
+#### For this you need to be using a Linux distro
+ 
 1. You will need to create an alias to the command in the .bashrc file like:
 ```bash
 alias create='source path to the start.sh file; creating'
