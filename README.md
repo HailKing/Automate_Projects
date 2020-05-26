@@ -8,7 +8,7 @@ Type in terminal the command 'create **name of the repository** _mode of the rep
 
 ### Setting environment:
 
-#### For this you need to be using a Linux distro
+#### For this you need to be using a Linux distro and to have VS code in your machine
  
 1. You will need to create an alias to the command in the .bashrc file like:
 ```bash
