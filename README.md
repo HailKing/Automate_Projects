@@ -4,11 +4,11 @@
 
 ### Usage:
 
-Type in terminal the command 'create **name of the repository** _mode of the repository_'
+Type in terminal the command 'create **name of the repository** _mode of the repository_' where the mode might be empty if you want a public repository or you can explicitly type 'public' or 'private' create whatever repository you want
 
 ### Setting environment:
 
-#### For this you need to be using a Linux distro and to have VS code in your machine
+#### For this you need to be using a Linux distro, to have VS code in your machine and to have the API token given by Github
  
 1. You will need to create an alias to the command in the .bashrc file like:
 ```bash
