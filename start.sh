@@ -14,24 +14,29 @@ creating(){
 	then
 		echo "Repository already exists"
 	else
-		epository=$1
-		status=$2
-		echo "Creating folder in path_to_projects_folder"
-		mkdir $1
-		cd $1
-		if [ -z "$status" ]
+		if [ -z "$2" ] || [ $2 == "public" ]
 		then
 			echo "Defining status as public"
 			status=false
 		else
-			echo "Defining status as private"
-			status=true
+			if [ $2 == "private" ]
+			then
+				echo "Defining status as private"
+				status=true
+			else
+				echo "Repository status must be public or private"
+				return 0
+			fi
 		fi
+		echo "Creating repository with name $1"
+		mkdir $1
+		cd $1
+
+		echo "-------------------------------------------------------------------------------"
+		response=$(curl -H "Authorization: token $token" --data '{"name": "'"${1}"'", "auto_init":false, "private": '$status'}'  https://api.github.com/user/repos)
+		echo "-------------------------------------------------------------------------------"
 
 		git init
-
-		response=$(curl -H "Authorization: token $token" --data '{"name": "'"${1}"'", "auto_init":false, "private": '$status'}'  https://api.github.com/user/repos)
-
 		git remote add origin https://github.com/$user/$1.git
 		echo "# Project $1" >> README.md
 		git add .
@@ -40,6 +45,7 @@ creating(){
 		
 		gnome-terminal
 		code .
+		
 	fi
 	
 	cd $current_directory
