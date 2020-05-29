@@ -48,7 +48,6 @@ creating(){
 		
 		gnome-terminal
 		code .
-		
 	fi
 	
 	cd $current_directory
