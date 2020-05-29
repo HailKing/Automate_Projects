@@ -6,14 +6,12 @@ creating(){
 
 	current_directory=$PWD
 
-	cd
-	cd $automating_folder
-	python3 connection.py $1 $token $status 
-	if [ $? == 0 ]
-	then 
+	answer=$(curl -Is  http://www.google.com | head -n 1)
+	if [ -z "$answer" ]
+	then
+		python -c 'print("\33[31mNo connection avaliable")'
 		return 0
 	fi
-	source .env
 
 	cd $path_to_projects_folder
 	if [ -d "$1" ]
@@ -34,6 +32,16 @@ creating(){
 				return 0
 			fi
 		fi
+
+		cd $automating_folder
+		source .env
+		python3 connection.py $1 $token $status 
+		if [ $? == 0 ]
+		then 
+			return 0
+		fi
+
+		cd $path_to_projects_folder
 		
 		echo "Creating repository on local machine with name $1"
 		mkdir $1
@@ -44,10 +52,12 @@ creating(){
 		echo "# Project $1" >> README.md
 		git add .
 		git commit -m "Initial commit"
+		# Basically this line is saying to the remote branch to follow the origin master of my local machine
 		git push --set-upstream origin master
 		
 		gnome-terminal
 		code .
+		
 	fi
 	
 	cd $current_directory
