@@ -4,8 +4,6 @@ creating(){
 	# Put here the path to the Automating Projects folder
 	automating_folder=""
 
-	current_directory=$PWD
-
 	answer=$(curl -Is  http://www.google.com | head -n 1)
 	if [ -z "$answer" ]
 	then
@@ -13,17 +11,30 @@ creating(){
 		return 0
 	fi
 
+	current_directory=$PWD
+
+	if [ "$1" == "-w" ]
+	then
+		work_mode=true
+		repository="$2"
+		status="$3"
+	else
+		work_mode=false
+		repository="$1"
+		status="$2"
+	fi
+
 	cd $path_to_projects_folder
-	if [ -d "$1" ]
+	if [ -d "$repository" ]
 	then
 		echo "Repository already exists"
 	else
-		if [ -z "$2" ] || [ $2 == "public" ]
+		if [ -z "$status" ] || [ $status == "public" ]
 		then
 			# echo "Defining status as public"
 			status=false
 		else
-			if [ $2 == "private" ]
+			if [ $status == "private" ]
 			then
 				# echo "Defining status as private"
 				status=true
@@ -35,7 +46,7 @@ creating(){
 
 		cd $automating_folder
 		source .env
-		python3 connection.py $1 $token $status 
+		python3 connection.py $repository $token $status 
 		if [ $? == 0 ]
 		then 
 			return 0
@@ -43,24 +54,26 @@ creating(){
 
 		cd $path_to_projects_folder
 		
-		echo "Creating repository on local machine with name $1"
-		mkdir $1
-		cd $1
+		echo "Creating repository on local machine with name $repository"
+		mkdir $repository
+		cd $repository
 
 		git init
-		git remote add origin https://github.com/$user/$1.git
-		echo "# Project $1" >> README.md
+		git remote add origin https://github.com/$user/$repository.git
+		echo "# Project $repository" >> README.md
 		git add .
 		git commit -m "Initial commit"
 		# Basically this line is saying to the remote branch to follow the origin master of my local machine
 		git push --set-upstream origin master
 		
-		gnome-terminal
-		code .
+		if $work_mode
+		then
+			clear
+			code .
+		else
+			cd $current_directory
+		fi
 		
 	fi
-	
-	cd $current_directory
-	return 1
 }
 
