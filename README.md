@@ -2,9 +2,23 @@
 
 ### Purpose: Automate the creation of repositories in my personal Linux machine and in Github and practice the creation of Shell Scripts
 
+<table style="width:100%">
+  <tr>
+
+  <td align="center"><img src="./.github/createdRepo.png" height="auto" width="500" /></td>
+
+  <td align="center"><img src="./.github/cretingRepo.png" height="auto" width="500" /></td>
+
+  </tr>
+</table>
+
+---
+
 ### Usage:
 
-Type in terminal the command 'create **name of the repository** _mode of the repository_' where the mode might be empty if you want a public repository or you can explicitly type 'public' or 'private' create whatever repository you want
+Type in terminal the command 'create **name of the repository** _mode of the repository_' where the mode might be empty if you want a public repository or you can explicitly type 'public' or 'private' create whatever repository you want.
+
+---
 
 ### Setting environment:
 
@@ -15,7 +29,7 @@ Type in terminal the command 'create **name of the repository** _mode of the rep
 alias create='source path to the start.sh file; creating'
 ```
 This is necessary to use the script in the terminal and save the alias permanently.
-It's interesting to see that if you create a script with only a function and run it you will be able to refer to the function as a command and that's why first the alias run the **start.sh** file and then use the function
+It's interesting to see that if you create a script with only a function and run it you will be able to refer to the function as a command and that's why first the alias run the **start.sh** file and then use the function.
 
 2. You also need to go to the **start.sh** and set _automating_folder_ to the path where the folder of Automate_Project is store. This is necessary fot the script to know where to look for the environment variables.
 
