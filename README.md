@@ -18,6 +18,13 @@
 
 
 Type in terminal the command "create 'work mode' **name of the repository** _mode of the repository_" where the mode of the repository might be empty if you want a public repository or you can explicitly type 'public' or 'private' to create whatever repository you want and if you want to open the vs code automatically and have your terminal redirected to the new repository in your machine you may type -w in the field of work mode.
+```bash
+# to open VS code and get your terminal to the repository's folder use:
+create -w testRepo1
+
+# to just create the repository locally and on GitHub use:
+create testRepo1
+```
 
 ### Setting environment:
 
